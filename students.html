@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<style>
+		/* Основные стили для заголовка */
+		.caption {
+			text-align: center;
+			color: #333;
+			font-family: sans-serif;
+			margin-bottom: 20px;
+		}
+
+		/* Стили таблицы */
+		table {
+			width: 100%;
+			border-collapse: collapse; /* Убирает двойные границы */
+			margin: 25px 0;
+			font-size: 18px;
+			font-family: sans-serif;
+			min-width: 400px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		}
+
+		table thead tr {
+			background-color: #009879; /* Приятный зеленый цвет */
+			color: #ffffff;
+			text-align: left;
+			font-weight: bold;
+		}
+
+		table th,
+		table td {
+			padding: 12px 15px;
+		}
+
+		/* Чередование цвета строк (зебра) */
+		table tbody tr {
+			border-bottom: 1px solid #dddddd;
+		}
+
+		table tbody tr:nth-of-type(even) {
+			background-color: #f3f3f3;
+		}
+
+		/* Эффект при наведении */
+		table tbody tr:hover {
+			background-color: #f1f1f1;
+			cursor: default;
+		}
+
+		/* Последняя строка с закруглением (опционально) */
+		table tbody tr:last-of-type {
+			border-bottom: 2px solid #009879;
+		}
+
+		/* Стиль для сообщения "Учеников нет" */
+		div p {
+			text-align: center;
+			color: #888;
+			font-style: italic;
+			margin-top: 20px;
+		}
+	</style>
+	<body>
+		<h1 class="caption">Список учеников</h1>
+		{% if students %}
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Имя</th>
+					<th>Возраст</th>
+					<th>Оценка</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in students %}
+				<tr>
+					<td>{{ student.id }}</td>
+					<td>{{ student.name }}</td>
+					<td>{{ student.age }}</td>
+					<td>{{ student.grade }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<div>
+			<p>Учеников пока нет</p>
+		</div>
+		{% endif %}
+
+		<div>
+			<a href="/add_student">Добавить ученика</a>
+		</div>
+	</body>
+</html>
